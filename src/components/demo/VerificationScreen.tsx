@@ -3,6 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { useToast } from "@/components/ui/use-toast";
+import { useNavigate } from "react-router-dom";
 
 interface VerificationScreenProps {
   onBack: () => void;
@@ -11,12 +12,22 @@ interface VerificationScreenProps {
 export const VerificationScreen = ({ onBack }: VerificationScreenProps) => {
   const [value, setValue] = useState("");
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleComplete = (value: string) => {
-    toast({
-      title: "Verification code entered",
-      description: `You entered: ${value}`,
-    });
+    if (value === "2222") {
+      toast({
+        title: "Verification Successful",
+        description: "Your account has been verified.",
+      });
+      navigate('/demo/home');
+    } else {
+      toast({
+        title: "Invalid Code",
+        description: "Please enter the correct verification code.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -82,14 +93,7 @@ export const VerificationScreen = ({ onBack }: VerificationScreenProps) => {
       <Button 
         className="w-full bg-black text-white py-6 rounded-xl"
         disabled={value.length !== 6}
-        onClick={() => {
-          if (value.length === 6) {
-            toast({
-              title: "Verification Successful",
-              description: "Your account has been verified successfully.",
-            });
-          }
-        }}
+        onClick={() => handleComplete(value)}
       >
         Verify
       </Button>
