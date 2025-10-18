@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Uniquest</title>
+    <meta name="description" content="Your one-stop destination for unique shopping experiences" />
+    <meta name="theme-color" content="#0F0F0F" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" href="https://res.cloudinary.com/dlqzokzi3/image/upload/v1735625456/uniquest_logo_doru4f.png" />
+    <meta property="og:image" content="https://res.cloudinary.com/dlqzokzi3/image/upload/v1735625456/uniquest_logo_doru4f.png" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js');
+        });
+      }
+    </script>
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
